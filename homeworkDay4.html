@@ -58,13 +58,16 @@
         .b span{
             float: right;
         }
+        .changeColor{
+            background-color: green !important;
+        }
     </style>
 </head>
 <body>
 <div id="app">
     <nav>
-        <div class="a"  @click="change('list')"><img src="grade.png"></div>
-        <div style="background-color: #00B7FF" class="a"  @click="change('grade')"><img src="list.png"></div>
+        <div class="a" :class="{changeColor:layout=='list'}"  @click="change('list')" ><img src="grade.png"></div>
+        <div style="background-color: #00B7FF" class="a" :class="{changeColor:layout=='grade'}"  @click="change('grade')"><img src="list.png"></div>
     </nav>
     <div id="all" >
             <a v-for="item in message" :href="item.url" v-show="layout=='list'"><img :src="item.image.small"></a>
@@ -127,7 +130,8 @@
         el:'#app',
         data:{
             message:array,
-            layout:'list'
+            layout:'list',
+            changeColor:'changeColor'
         },
         methods:{
             change:function (a) {
