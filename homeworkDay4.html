@@ -19,7 +19,6 @@
         }
         #app{
             width: 100%;
-            height:100%;
         }
         nav{
             height: 50px;
@@ -41,18 +40,14 @@
         #all{
             overflow: hidden;
             width: 95%;
-            height:100%;
             margin: 0 auto;
         }
         #all a{
             display: inline-block;
             width:50%;
-            height:30%;
         }
         #all img{
             width: 100%;
-            height:100%;
-
         }
         .b{
             overflow: hidden;
@@ -72,7 +67,7 @@
         <div style="background-color: #00B7FF" class="a"  @click="change('grade')"><img src="list.png"></div>
     </nav>
     <div id="all" >
-            <a v-for="item in message" :href="item.url" v-show="layout=='list'"><img :src="item.image.large"></a>
+            <a v-for="item in message" :href="item.url" v-show="layout=='list'"><img :src="item.image.small"></a>
             <div class="b" v-for="item in message" v-show="layout=='grade'">
                 <a :href="item.url" style="display: inline-block;width:100%;"><img :src="item.image.small" style="width:30%;"><span v-text="item.title" style="width:65%;"></span></a>
             </div>
