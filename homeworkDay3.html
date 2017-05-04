@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        ul{
+            text-align: center;
+            background-color: #00B7FF;
+        }
+        li{
+            display: inline-block;
+            margin: 10px 20px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        li:hover{
+            background-color: #4078c0;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item in message" v-on:click="liClick(item)">{{item}}</li>
+    </ul>
+    <p>{{pop}}</p>
+</div>
+<script>
+    var lis=document.getElementsByTagName('li');
+    var arr=['编程','读书','Java教程','JavaScript教程','Python教程','Git教程','问答','帮助'];
+    console.log(arr);
+    var app=new Vue({
+        el:'#app',
+        data:{
+            message:arr,
+            pop:'编程'
+        },
+        methods:{
+            liClick:function (item) {
+                this.pop=item;
+                for(var i=0;i<lis.length;i++){
+                    lis[i].style.backgroundColor='#00B7FF';
+                }
+                var a=arr.indexOf(item);
+                lis[a].style.backgroundColor='#4078c0';
+            }
+        }
+    });
+
+
+
+</script>
+</body>
+</html>
