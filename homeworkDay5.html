@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,body{
+            height:100%;
+        }
+        #app{
+            background-color: lightskyblue;
+            height:100%;
+            padding: 5%;
+            text-align: center;
+            font-size: 60px;
+            color: white;
+        }
+        .a{
+            display: inline-block;
+            height:5%;
+            padding: 3%;
+            width:50%;
+            margin: 1% 0;
+            background-color: seagreen;
+            font-size: 20px;
+            text-align: left;
+        }
+        .a span{
+            float: right;
+        }
+        .a:hover{
+            cursor: pointer;
+        }
+        #line{
+            margin: 20px 0;
+            height: 3px;
+            background-color: gray;
+        }
+        .changeColor{
+            background-color: orangered;
+        }
+    </style>
+</head>
+<body>
+<div id="app">services
+    <br>
+    <div class="a" v-for="(item,index) in msg" @click="total(item.price,index)" :class="{changeColor:item.active}">{{item.name}}
+        <span>{{item.price}}</span>
+    </div>
+    <p id="line"></p>
+    <div style="text-align: left;padding: 0 10%">
+        <span>Total:</span>
+        <span style="float: right">{{sum|money}}</span>
+    </div>
+</div>
+</body>
+<script>
+    var services = [
+        {
+            name: 'Web Development',
+            price: 300,
+            active:false
+        },{
+            name: 'Design',
+            price: 400,
+            active:false
+        },{
+            name: 'Integration',
+            price: 250,
+            active:false
+        },{
+            name: 'Training',
+            price: 220,
+            active:false
+        }
+    ];
+    Vue.filter('money',function (sum) {
+        return '¥'+sum;
+    });
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            msg:services,
+            sum:0
+        },
+        methods:{
+            total:function (price,index) {
+
+                this.msg[index].active=!this.msg[index].active;
+                if(this.msg[index].active==true){
+                    this.sum+=price;
+                }else {
+                    this.sum-=price;
+                }
+            }
+        }
+    })
+</script>
+</html>
