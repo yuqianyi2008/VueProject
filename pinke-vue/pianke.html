@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="pianke.css">
+</head>
+<body>
+<div id="header">
+    <a href="#" id="headLogo"></a>
+    <ul id="nav">
+        <li v-for="item in msg"><a href="#">{{item}}</a></li>
+    </ul>
+    <div>
+        <div id="login1">
+            <img src="images/img/pec.png">
+        </div>
+        <a href="#" id="login2">登录/注册</a>
+    </div>
+</div>
+<!--导航栏完成------------->
+<div id="all">
+    <div id="recent">
+
+        <a href="#" v-for="item in msg">
+            <div class="picturemeng2"></div>
+            <div class="picturemeng22">
+                <div style="height: 60%;"></div>
+                <span>__</span><br>
+                {{item.title}}
+            </div>
+
+            <img :src="item.cover">
+        </a>
+    </div>
+
+    <div class="kong">
+        <div class="diamond"></div>
+        <span>阅读 | Read</span>
+    </div>
+
+    <!--阅读==========-->
+    <div id="article">
+        <div class="list" v-for="item in msg">
+            <div class="listLeft">
+                <h3>{{item.title}}</h3>
+                <p>By /{{item.uname}}</p>
+                <div>____</div>
+                <br>
+                <span>{{item.summary}}</span>
+                <i>VIEW ALL <img src="images/img/green.png"></i>
+                <ul>
+                    <li>{{(item.views/1000).toFixed(1)}} k次阅读</li>
+                    <li>评论:{{item.comments}}</li>
+                    <li>喜欢:{{item.likes}}</li>
+                </ul>
+
+            </div>
+            <div class="listRight">
+                <img :src="item.cover">
+            </div>
+        </div>
+    </div>
+    <div class="kong">
+        <div class="diamond"></div>
+        <span>图片 | Picture</span>
+    </div>
+    <!--图片---------------------------------------->
+    <div id="vision">
+        <img v-for="item in msg[0].cover" :src="item">
+        <div class="pictureBottom">
+            <h3>{{msg[0].title}}</h3>
+            <span>{{msg[0].summary}}</span><a href="#">VIEW ALL <img src="images/img/green.png"></a>
+            <div class="pictureFooter">
+                <span>By / {{msg[0].summary}}</span>
+                <ul>
+                    <li>{{(msg[0].views/1000).toFixed(1)}} k次阅读</li>
+                    <li>评论:{{msg[0].comments}}</li>
+                    <li>喜欢:{{msg[0].likes}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="kong">
+        <div class="diamond"></div>
+        <span>Ting</span>
+    </div>
+    <!--ting-------------------------------->
+    <div id="ting">
+        <div class="tinglist" v-for="item in msg">
+            <a href="#">
+                <div class="picturemeng2"></div>
+                <div class="picturemeng22" style="background-position-y: 65%;">
+                    <div style="height: 70%;"></div>
+                </div>
+                <img :src="item.cover">
+            </a>
+            <div class="tingbottom">
+                <h3 style="text-overflow:ellipsis;height: 35px;">{{item.title}}</h3>
+                <span>By / {{item.uname}}</span>
+                <ul>
+                    <li>{{(item.views/1000).toFixed(1)}} k次阅读</li>
+                    <li>评论:{{item.comments}}</li>
+                    <li>喜欢:{{msg[0].likes}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="kong">
+        <div class="diamond"></div>
+        <span>人气片客|Hot Pianker</span>
+    </div>
+    <!--人气片客-->
+    <div id="insterest">
+        <div class="piankerlist" v-for="item in msg">
+            <div class="piankerman">
+                <a href="#" class="headpicture">
+                    <img :src="item.icon">
+                </a>
+                <div class="headunder"></div>
+            </div>
+            <div class="piankerman">
+                <div class="piankermanRight">
+                    <a href="#">{{item.uname}}</a>
+                    <h5>____</h5>
+                    <span>{{item.desc}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 60px;"></div>
+    <a href="#" class="more">查看更多精选内容</a>
+    <div style="height: 60px;"></div>
+
+
+    <div id="footer">
+        <div class="footer">
+            <div class="col-md-1">123</div>
+            <div class="col-md-4">
+                <ul>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">友情链接</a></li>
+                    <li><a href="#">片刻帮助</a></li>
+                    <li><a href="#">意见反馈</a></li>
+                    <li><a href="#">成长记忆</a></li>
+                </ul>
+                <p>All rights reserved © 2016 pianke.me /蜀ICP备12022689号-1</p>
+            </div>
+            <div class="col-md-4">
+                <ul class="popularize">
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li>
+                        <div id="dd">
+                            <div style="position: relative;">
+                                <div id="jian"></div>
+                                <div id="dd2"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<a href="#" id="up"></a>
+</body>
+<script src="shujv.js"></script>
+<script>
+    var headerarr = ['首页', '阅读', '电台', '碎片', '客户端'];
+    var headervm = new Vue({
+        el: '#header',
+        data: {
+            msg: headerarr
+        }
+    });
+    var recentvm = new Vue({
+        el: '#recent',
+        data: {
+            msg: recent
+        }
+    });
+
+    var articlevm = new Vue({
+        el: '#article',
+        data: {
+            msg: article
+        }
+    });
+
+    var visionvm = new Vue({
+        el: '#vision',
+        data: {
+            msg: vision
+        }
+    });
+    var tingvm = new Vue({
+        el: '#ting',
+        data: {
+            msg: ting
+        }
+    });
+    var insterest = new Vue({
+        el: '#insterest',
+        data: {
+            msg: insterest
+        }
+    });
+</script>
+</html>
